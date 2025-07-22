@@ -7,13 +7,13 @@ BUILD_DIR:=.bin
 SRC_DIR:=./cmd
 
 build:
-	@echo "Building the core project ..."
+	@echo "Building the project ..."
 	go build -o $(BUILD_DIR)/main $(SRC_DIR)/main.go
 	@echo "Build Completed"
 
 run-prod:
 	@echo "Running the project in production mode ..."
-	$(BUILD_DIR)/core -dev=false
+	$(BUILD_DIR)/main -dev=false
 
 run-dev:
 	@echo "Running the project in development mode ..."
