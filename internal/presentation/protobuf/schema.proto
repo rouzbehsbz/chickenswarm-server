@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+option go_package = "chickenswarm/internal/presentation/protobuf";
+
+message Welcome {
+    int32 playerId = 1;
+    int32 x = 2;
+    int32 y = 3;
+}
+
+message Move {
+    Direction direction = 2;
+    int32 sequenceNumber = 3;
+}
+
+message Players {
+    message Player {
+        int32 playerId = 1;
+        string nickname = 2;
+        int32 x = 3;
+        int32 y = 4;
+        int32 sequenceNumber = 5;
+    }
+
+    repeated Player players = 1;
+    int64 timestamp = 2;
+}
+
+message Disconnect {
+    int32 playerId = 1;
+}
+
+message Ping {
+    int64 timestamp = 2;
+}
+
+message Pong {
+    int64 timestamp = 1;
+}
+
+message Join {
+    string nickname = 1;
+}
+
+enum Direction {
+    UP = 0;
+    DOWN = 1;
+    LEFT = 2;
+    RIGHT = 3;
+}
