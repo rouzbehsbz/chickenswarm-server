@@ -16,6 +16,11 @@ const (
 )
 
 const (
+	PlayerWidth  = 64
+	PlayerHeight = 64
+)
+
+const (
 	PlayerSpeed = 5
 )
 
@@ -54,6 +59,9 @@ func (p *Player) Move(direction, sequenceNumber int) {
 
 	p.Position.X += d.X
 	p.Position.Y += d.Y
+
+	p.Position.X = common.ClampInt(p.Position.X, 0, WORLD_WIDTH-PlayerWidth)
+	p.Position.Y = common.ClampInt(p.Position.Y, 0, WORLD_HEIGHT-PlayerHeight)
 }
 
 func (p *Player) IsNicknameValid(nickname string) bool {

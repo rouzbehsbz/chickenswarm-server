@@ -110,6 +110,30 @@ func (g *Game) RemovePlayer(conn *websocket.Conn) {
 func (g *Game) handleIncomingPlayers() {
 	for conn := range g.Server.IncomingPlayers {
 		_ = g.AddPlayer(conn)
+
+		players := []*protobuf.Nicknames_Player{}
+		for _, player := range g.playersIndexById {
+			if player.Nickname == "" {
+				continue
+			}
+
+			players = append(players, &protobuf.Nicknames_Player{
+				PlayerId: int32(player.Id),
+				Nickname: player.Nickname,
+			})
+		}
+
+		buffer := []presentation.Message{
+			{
+				TypeId: presentation.NicknamesMessageTypeId,
+				Message: &protobuf.Nicknames{
+					Players: players,
+				},
+			},
+		}
+
+		packet, _ := g.Server.CreatePacket(buffer)
+		g.sendPacket(packet, conn)
 	}
 }
 
@@ -154,6 +178,16 @@ func (g *Game) handleIncomingMessages() {
 
 			player.Nickname = m.Nickname
 
+			connectBuffer := []presentation.Message{
+				{
+					TypeId: presentation.ConnectMessageTypeId,
+					Message: &protobuf.Connect{
+						PlayerId: int32(player.Id),
+						Nickname: player.Nickname,
+					},
+				},
+			}
+
 			welcomeBuffer := []presentation.Message{
 				{
 					TypeId: presentation.WelcomeMessageTypeId,
@@ -164,6 +198,8 @@ func (g *Game) handleIncomingMessages() {
 					},
 				},
 			}
+
+			g.AddToBroadcastBuffer(connectBuffer...)
 
 			welcomePacket, _ := g.Server.CreatePacket(welcomeBuffer)
 			g.sendPacket(welcomePacket, msg.Conn)
@@ -182,7 +218,6 @@ func (g *Game) updateWorldState() {
 
 		players = append(players, &protobuf.Players_Player{
 			PlayerId:       int32(player.Id),
-			Nickname:       player.Nickname,
 			X:              int32(player.Position.X),
 			Y:              int32(player.Position.Y),
 			SequenceNumber: int32(player.SequenceNumber),

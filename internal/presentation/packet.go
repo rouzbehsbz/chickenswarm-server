@@ -14,6 +14,8 @@ const (
 	PingMessageTypeId       = 5
 	PongMesssageTypeId      = 6
 	JoinMessageTypeId       = 7
+	ConnectMessageTypeId    = 8
+	NicknamesMessageTypeId  = 9
 )
 
 type MessageTypeCreator func() proto.Message
@@ -26,4 +28,6 @@ var messageTypeRegistry = map[uint8]MessageTypeCreator{
 	5: func() proto.Message { return &protobuf.Ping{} },
 	6: func() proto.Message { return &protobuf.Pong{} },
 	7: func() proto.Message { return &protobuf.Join{} },
+	8: func() proto.Message { return &protobuf.Connect{} },
+	9: func() proto.Message { return &protobuf.Nicknames{} },
 }

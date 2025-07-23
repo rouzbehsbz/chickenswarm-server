@@ -413,10 +413,105 @@ func (x *Join) GetNickname() string {
 	return ""
 }
 
+type Connect struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerId      int32                  `protobuf:"varint,1,opt,name=playerId,proto3" json:"playerId,omitempty"`
+	Nickname      string                 `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Connect) Reset() {
+	*x = Connect{}
+	mi := &file_internal_presentation_protobuf_schema_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Connect) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Connect) ProtoMessage() {}
+
+func (x *Connect) ProtoReflect() protoreflect.Message {
+	mi := &file_internal_presentation_protobuf_schema_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Connect.ProtoReflect.Descriptor instead.
+func (*Connect) Descriptor() ([]byte, []int) {
+	return file_internal_presentation_protobuf_schema_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *Connect) GetPlayerId() int32 {
+	if x != nil {
+		return x.PlayerId
+	}
+	return 0
+}
+
+func (x *Connect) GetNickname() string {
+	if x != nil {
+		return x.Nickname
+	}
+	return ""
+}
+
+type Nicknames struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Players       []*Nicknames_Player    `protobuf:"bytes,1,rep,name=players,proto3" json:"players,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Nicknames) Reset() {
+	*x = Nicknames{}
+	mi := &file_internal_presentation_protobuf_schema_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Nicknames) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Nicknames) ProtoMessage() {}
+
+func (x *Nicknames) ProtoReflect() protoreflect.Message {
+	mi := &file_internal_presentation_protobuf_schema_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Nicknames.ProtoReflect.Descriptor instead.
+func (*Nicknames) Descriptor() ([]byte, []int) {
+	return file_internal_presentation_protobuf_schema_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *Nicknames) GetPlayers() []*Nicknames_Player {
+	if x != nil {
+		return x.Players
+	}
+	return nil
+}
+
 type Players_Player struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	PlayerId       int32                  `protobuf:"varint,1,opt,name=playerId,proto3" json:"playerId,omitempty"`
-	Nickname       string                 `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname,omitempty"`
 	X              int32                  `protobuf:"varint,3,opt,name=x,proto3" json:"x,omitempty"`
 	Y              int32                  `protobuf:"varint,4,opt,name=y,proto3" json:"y,omitempty"`
 	SequenceNumber int32                  `protobuf:"varint,5,opt,name=sequenceNumber,proto3" json:"sequenceNumber,omitempty"`
@@ -426,7 +521,7 @@ type Players_Player struct {
 
 func (x *Players_Player) Reset() {
 	*x = Players_Player{}
-	mi := &file_internal_presentation_protobuf_schema_proto_msgTypes[7]
+	mi := &file_internal_presentation_protobuf_schema_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -438,7 +533,7 @@ func (x *Players_Player) String() string {
 func (*Players_Player) ProtoMessage() {}
 
 func (x *Players_Player) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_presentation_protobuf_schema_proto_msgTypes[7]
+	mi := &file_internal_presentation_protobuf_schema_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -459,13 +554,6 @@ func (x *Players_Player) GetPlayerId() int32 {
 		return x.PlayerId
 	}
 	return 0
-}
-
-func (x *Players_Player) GetNickname() string {
-	if x != nil {
-		return x.Nickname
-	}
-	return ""
 }
 
 func (x *Players_Player) GetX() int32 {
@@ -489,6 +577,58 @@ func (x *Players_Player) GetSequenceNumber() int32 {
 	return 0
 }
 
+type Nicknames_Player struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PlayerId      int32                  `protobuf:"varint,1,opt,name=playerId,proto3" json:"playerId,omitempty"`
+	Nickname      string                 `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Nicknames_Player) Reset() {
+	*x = Nicknames_Player{}
+	mi := &file_internal_presentation_protobuf_schema_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Nicknames_Player) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Nicknames_Player) ProtoMessage() {}
+
+func (x *Nicknames_Player) ProtoReflect() protoreflect.Message {
+	mi := &file_internal_presentation_protobuf_schema_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Nicknames_Player.ProtoReflect.Descriptor instead.
+func (*Nicknames_Player) Descriptor() ([]byte, []int) {
+	return file_internal_presentation_protobuf_schema_proto_rawDescGZIP(), []int{8, 0}
+}
+
+func (x *Nicknames_Player) GetPlayerId() int32 {
+	if x != nil {
+		return x.PlayerId
+	}
+	return 0
+}
+
+func (x *Nicknames_Player) GetNickname() string {
+	if x != nil {
+		return x.Nickname
+	}
+	return ""
+}
+
 var File_internal_presentation_protobuf_schema_proto protoreflect.FileDescriptor
 
 const file_internal_presentation_protobuf_schema_proto_rawDesc = "" +
@@ -501,13 +641,12 @@ const file_internal_presentation_protobuf_schema_proto_rawDesc = "" +
 	"\x04Move\x12(\n" +
 	"\tdirection\x18\x02 \x01(\x0e2\n" +
 	".DirectionR\tdirection\x12&\n" +
-	"\x0esequenceNumber\x18\x03 \x01(\x05R\x0esequenceNumber\"\xd9\x01\n" +
+	"\x0esequenceNumber\x18\x03 \x01(\x05R\x0esequenceNumber\"\xbc\x01\n" +
 	"\aPlayers\x12)\n" +
 	"\aplayers\x18\x01 \x03(\v2\x0f.Players.PlayerR\aplayers\x12\x1c\n" +
-	"\ttimestamp\x18\x02 \x01(\x03R\ttimestamp\x1a\x84\x01\n" +
+	"\ttimestamp\x18\x02 \x01(\x03R\ttimestamp\x1ah\n" +
 	"\x06Player\x12\x1a\n" +
-	"\bplayerId\x18\x01 \x01(\x05R\bplayerId\x12\x1a\n" +
-	"\bnickname\x18\x02 \x01(\tR\bnickname\x12\f\n" +
+	"\bplayerId\x18\x01 \x01(\x05R\bplayerId\x12\f\n" +
 	"\x01x\x18\x03 \x01(\x05R\x01x\x12\f\n" +
 	"\x01y\x18\x04 \x01(\x05R\x01y\x12&\n" +
 	"\x0esequenceNumber\x18\x05 \x01(\x05R\x0esequenceNumber\"(\n" +
@@ -519,7 +658,15 @@ const file_internal_presentation_protobuf_schema_proto_rawDesc = "" +
 	"\x04Pong\x12\x1c\n" +
 	"\ttimestamp\x18\x01 \x01(\x03R\ttimestamp\"\"\n" +
 	"\x04Join\x12\x1a\n" +
-	"\bnickname\x18\x01 \x01(\tR\bnickname*2\n" +
+	"\bnickname\x18\x01 \x01(\tR\bnickname\"A\n" +
+	"\aConnect\x12\x1a\n" +
+	"\bplayerId\x18\x01 \x01(\x05R\bplayerId\x12\x1a\n" +
+	"\bnickname\x18\x02 \x01(\tR\bnickname\"z\n" +
+	"\tNicknames\x12+\n" +
+	"\aplayers\x18\x01 \x03(\v2\x11.Nicknames.PlayerR\aplayers\x1a@\n" +
+	"\x06Player\x12\x1a\n" +
+	"\bplayerId\x18\x01 \x01(\x05R\bplayerId\x12\x1a\n" +
+	"\bnickname\x18\x02 \x01(\tR\bnickname*2\n" +
 	"\tDirection\x12\x06\n" +
 	"\x02UP\x10\x00\x12\b\n" +
 	"\x04DOWN\x10\x01\x12\b\n" +
@@ -539,26 +686,30 @@ func file_internal_presentation_protobuf_schema_proto_rawDescGZIP() []byte {
 }
 
 var file_internal_presentation_protobuf_schema_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_internal_presentation_protobuf_schema_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_internal_presentation_protobuf_schema_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_internal_presentation_protobuf_schema_proto_goTypes = []any{
-	(Direction)(0),         // 0: Direction
-	(*Welcome)(nil),        // 1: Welcome
-	(*Move)(nil),           // 2: Move
-	(*Players)(nil),        // 3: Players
-	(*Disconnect)(nil),     // 4: Disconnect
-	(*Ping)(nil),           // 5: Ping
-	(*Pong)(nil),           // 6: Pong
-	(*Join)(nil),           // 7: Join
-	(*Players_Player)(nil), // 8: Players.Player
+	(Direction)(0),           // 0: Direction
+	(*Welcome)(nil),          // 1: Welcome
+	(*Move)(nil),             // 2: Move
+	(*Players)(nil),          // 3: Players
+	(*Disconnect)(nil),       // 4: Disconnect
+	(*Ping)(nil),             // 5: Ping
+	(*Pong)(nil),             // 6: Pong
+	(*Join)(nil),             // 7: Join
+	(*Connect)(nil),          // 8: Connect
+	(*Nicknames)(nil),        // 9: Nicknames
+	(*Players_Player)(nil),   // 10: Players.Player
+	(*Nicknames_Player)(nil), // 11: Nicknames.Player
 }
 var file_internal_presentation_protobuf_schema_proto_depIdxs = []int32{
-	0, // 0: Move.direction:type_name -> Direction
-	8, // 1: Players.players:type_name -> Players.Player
-	2, // [2:2] is the sub-list for method output_type
-	2, // [2:2] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	0,  // 0: Move.direction:type_name -> Direction
+	10, // 1: Players.players:type_name -> Players.Player
+	11, // 2: Nicknames.players:type_name -> Nicknames.Player
+	3,  // [3:3] is the sub-list for method output_type
+	3,  // [3:3] is the sub-list for method input_type
+	3,  // [3:3] is the sub-list for extension type_name
+	3,  // [3:3] is the sub-list for extension extendee
+	0,  // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_internal_presentation_protobuf_schema_proto_init() }
@@ -572,7 +723,7 @@ func file_internal_presentation_protobuf_schema_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_internal_presentation_protobuf_schema_proto_rawDesc), len(file_internal_presentation_protobuf_schema_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   8,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
