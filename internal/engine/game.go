@@ -3,7 +3,6 @@ package engine
 import (
 	"chickenswarm-server/internal/presentation"
 	"chickenswarm-server/internal/presentation/protobuf"
-	"math"
 	"math/rand"
 	"sync"
 	"time"
@@ -51,23 +50,14 @@ func NewGame() *Game {
 }
 
 func (g *Game) startLoop() {
-	lastFrameTime := time.Now().UnixMilli()
-
 	for {
-		now := time.Now().UnixMilli()
-		delta := now - lastFrameTime
-
-		lastFrameTime = now
-
 		g.updateWorldState()
 
 		packet, _ := g.Server.CreatePacket(g.broadcastBuffer)
 		g.broadcastPacket(packet)
 		g.broadcastBuffer = []presentation.Message{}
 
-		sleepTime := math.Max(0, float64(1000/FPS)-float64(delta))
-
-		time.Sleep(time.Duration(sleepTime * float64(time.Millisecond)))
+		time.Sleep(1000 / FPS * time.Millisecond)
 	}
 }
 
