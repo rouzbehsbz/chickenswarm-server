@@ -13,7 +13,7 @@ import (
 const (
 	WORLD_WIDTH   = 700
 	WORLD_HEIGHT  = 700
-	FPS           = 30
+	FPS           = 10
 	PING_INTERVAL = 3 * time.Second
 )
 
